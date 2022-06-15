@@ -15,12 +15,15 @@ public class Week2{
 
         //MedianArray1 = new int[] {1, 3};
         //MedianArray2 =  new int[] {2,50};
+
+        //Challenge 1
         System.out.println(median(MedianArray1, MedianArray2));
 
         LinkedList<Integer>[] kMerge = new LinkedList[new Random().nextInt(10) + 1];
         for (int i = 0; i < kMerge.length; i++)
             kMerge[i] = arrayToLinkedList(getRandomSortedIntArray());
 
+        //Challenge 2
         System.out.println(combineSortedLinkList(kMerge));
     }
 
@@ -39,12 +42,14 @@ public class Week2{
         return sortedResult;
     }
 
-    static double median(int[] MA1, int[] MA2){
+    static double median(int[]... args){
 
-        LinkedList<Integer> linkedList1 = arrayToLinkedList(MA1);
-        LinkedList<Integer> linkedList2 = arrayToLinkedList(MA2);
+        LinkedList<Integer>[] combineArgs = new LinkedList[args.length];
+        for (int i = 0; i < combineArgs.length; i++) {
+            combineArgs[i] = arrayToLinkedList(args[i]);
+        }
 
-        LinkedList<Integer> sortedLinkList = combineSortedLinkList(linkedList1, linkedList2);
+        LinkedList<Integer> sortedLinkList = combineSortedLinkList(combineArgs);
 
         int midpoint = sortedLinkList.size() / 2 - 1;
         if (sortedLinkList.size() % 2 == 1) {
@@ -66,8 +71,9 @@ public class Week2{
         while (Arrays.stream(args).anyMatch(x -> !x.isEmpty())) {
             LinkedList<Integer> peekResult = null;
             for (LinkedList<Integer> item : args) {
-                if (!item.isEmpty() && (peekResult == null || item.peek() < peekResult.peek()))
+                if (!item.isEmpty() && (peekResult == null || item.peek() < peekResult.peek())) {
                     peekResult = item;
+                }
             }
             result.add(peekResult.pollFirst());
         }
