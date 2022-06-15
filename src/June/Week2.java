@@ -32,13 +32,11 @@ public class Week2{
         int[] randInts = new int[rand.nextInt(10) + 1];
         for (int i = 0; i < randInts.length; i++)
             randInts[i] = rand.nextInt(200);
+
         int[] sortedResult = Arrays.stream(randInts).sorted().toArray();
-        StringBuilder builder = new StringBuilder("\t[");
-        for (int i = 0; i < sortedResult.length; i++) {
-            String append = (i != sortedResult.length - 1) ? ", " : "]";
-            builder.append(sortedResult[i] + append);
-        }
-        System.out.println(builder);
+
+        System.out.println("\t"+Arrays.toString(sortedResult));
+
         return sortedResult;
     }
 
